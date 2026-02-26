@@ -1,31 +1,118 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mi Blog de Películas</title>
+    <title>Blog de Películas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar-custom {
+            background-color: #1e293b;
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 16px;
+            transition: 0.2s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .badge-custom {
+            background: linear-gradient(45deg, #6366f1, #7c3aed);
+            color: white;
+            font-weight: 500;
+            padding: 6px 10px;
+            border-radius: 8px;
+        }
+
+        .btn-primary {
+            background-color: #7c3aed;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #6d28d9;
+        }
+
+        .btn-outline-danger:hover {
+            background-color: #ef4444;
+            color: white;
+        }
+
+        .star {
+            color: #fbbf24;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            background-color: #1e293b;
+            color: #cbd5e1;
+        }
+    </style>
 </head>
-<body>
 
-    <header>
-        <h1>🎬 Blog de Películas</h1>
-        <nav>
-            <a href="{% url 'blog:pelicula-list' %}">Películas</a> |
-            <a href="{% url 'blog:genero-list' %}">Géneros</a> |
-            <a href="{% url 'blog:director-list' %}">Directores</a> |
-            <a href="{% url 'blog:pelicula-create' %}">Agregar Película</a>
-        </nav>
-        <hr>
-    </header>
+<body class="d-flex flex-column min-vh-100">
 
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'blog:pelicula-list' %}">
+            🎬 Blog de Películas
+        </a>
 
-    <hr>
-    <footer>
-        <p>Proyecto Django - Blog de Películas</p>
-    </footer>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav me-auto ms-4 mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog:pelicula-list' %}">Películas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog:director-list' %}">Directores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog:genero-list' %}">Géneros</a>
+                </li>
+            </ul>
+
+            <a href="{% url 'blog:pelicula-create' %}" class="btn btn-primary fw-semibold">
+                + Agregar Película
+            </a>
+        </div>
+    </div>
+</nav>
+
+<main class="container py-5 flex-grow-1">
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer class="text-center py-3">
+    Proyecto Django — Blog de Películas <br>
+    <small>Hecho por Santiago Rebora</small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

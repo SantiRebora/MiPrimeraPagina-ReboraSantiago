@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 from . import forms
 from .models import Director, Genero, Pelicula
 from .forms import DirectorForm, GeneroForm, PeliculaForm, BusquedaPeliculaForm
@@ -42,9 +44,22 @@ class PeliculaDetailView(DetailView):
 class PeliculaCreateView(CreateView):
     model = Pelicula
     form_class = PeliculaForm
-    template_name = "blog/pelicula_form.html"
     success_url = reverse_lazy("blog:pelicula-list")
 
+    def get_initial(self):
+        initial = super().get_initial()
+
+        genero_id = self.request.GET.get("genero")
+        director_id = self.request.GET.get("director")
+
+        if genero_id:
+            initial["genero"] = genero_id
+
+        if director_id:
+            initial["director"] = director_id
+
+        return initial
+    
 class PeliculaUpdateView(UpdateView):
     model = Pelicula
     form_class = PeliculaForm
@@ -64,17 +79,33 @@ class GeneroListView(ListView):
 class GeneroCreateView(CreateView):
     model = Genero
     form_class = GeneroForm
-    template_name = "blog/genero_form.html"
-    success_url = reverse_lazy("blog:genero-list")
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        next_url = self.request.GET.get("next")
+
+        if next_url:
+            return HttpResponseRedirect(f"{next_url}?genero={self.object.pk}")
+
+        return response
 
 class DirectorListView(ListView):
     model = Director
     template_name = "blog/director_list.html"
     context_object_name = "directores"
 
+from django.http import HttpResponseRedirect
+
 class DirectorCreateView(CreateView):
     model = Director
     form_class = DirectorForm
-    template_name = "blog/director_form.html"
-    success_url = reverse_lazy("blog:director-list")
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        next_url = self.request.GET.get("next")
+
+        if next_url:
+            return HttpResponseRedirect(f"{next_url}?director={self.object.pk}")
+
+        return response
 

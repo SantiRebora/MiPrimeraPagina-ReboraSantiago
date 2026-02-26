@@ -1,21 +1,79 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-<h2>
-    {% if form.instance.pk %}
-        Editar Película
-    {% else %}
-        Crear Nueva Película
-    {% endif %}
-</h2>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar</button>
-</form>
+<div class="card shadow-sm">
+    <div class="card-body">
 
-<br>
-<a href="{% url 'blog:pelicula-list' %}">⬅ Cancelar</a>
+        <h2 class="mb-4">
+            {% if form.instance.pk %}
+                ✏ Editar Película
+            {% else %}
+                🎬 Crear Nueva Película
+            {% endif %}
+        </h2>
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                {{ form.errors }}
+            </div>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">Título</label>
+                {{ form.titulo }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Género</label>
+                {{ form.genero }}
+               <a href="{% url 'blog:genero-create' %}?next={{ request.path }}" class="btn btn-outline-secondary btn-sm">
+                + Agregar género
+                </a>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Sinopsis</label>
+                {{ form.sinopsis }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Fecha de estreno</label>
+                {{ form.fecha_estreno }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Duración (minutos)</label>
+                {{ form.duracion }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Director</label>
+                {{ form.director }}
+                <a href="{% url 'blog:director-create' %}?next={{ request.path }}" class="btn btn-outline-secondary btn-sm">
+                + Agregar director
+                </a>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Puntuación</label>
+                {{ form.puntuacion }}
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-success">
+                    Guardar
+                </button>
+
+                <a href="{% url 'blog:pelicula-list' %}" class="btn btn-secondary">
+                    Cancelar
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+</div>
 
 {% endblock %}
