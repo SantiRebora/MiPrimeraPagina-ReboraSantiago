@@ -8,7 +8,7 @@ from .models import Pelicula, Director, Genero
 app_name = "blog"
 
 urlpatterns = [
-    path("", views.PeliculaListView.as_view(), name="pelicula-detail"),
+    path("", views.PeliculaListView.as_view(), name="pelicula-list"),
     path("pelicula/<int:pk>/", views.PeliculaDetailView.as_view(), name="pelicula-detail"),
     path("pelicula/nueva/", views.PeliculaCreateView.as_view(), name="pelicula-create"),
     path("pelicula/<int:pk>/editar/", views.PeliculaUpdateView.as_view(), name="pelicula-update"),

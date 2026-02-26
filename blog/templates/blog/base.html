@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Blog de Películas</title>
+</head>
+<body>
+
+    <header>
+        <h1>🎬 Blog de Películas</h1>
+        <nav>
+            <a href="{% url 'blog:pelicula-list' %}">Películas</a> |
+            <a href="{% url 'blog:genero-list' %}">Géneros</a> |
+            <a href="{% url 'blog:director-list' %}">Directores</a> |
+            <a href="{% url 'blog:pelicula-create' %}">Agregar Película</a>
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <hr>
+    <footer>
+        <p>Proyecto Django - Blog de Películas</p>
+    </footer>
+
+</body>
+</html>

@@ -1,31 +1,15 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Mi Blog de Películas</title>
-</head>
-<body>
+{% extends "blog/base.html" %}
 
-    <header>
-        <h1>🎬 Blog de Películas</h1>
-        <nav>
-            <a href="{% url 'pelicula-list' %}">Películas</a> |
-            <a href="{% url 'genero-list' %}">Géneros</a> |
-            <a href="{% url 'director-list' %}">Directores</a> |
-            <a href="{% url 'pelicula-create' %}">Agregar Película</a>
-        </nav>
-        <hr>
-    </header>
+{% block content %}
+<h2>Crear Nuevo Director</h2>
 
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>
 
-    <hr>
-    <footer>
-        <p>Proyecto Django - Blog de Películas</p>
-    </footer>
+<br>
+<a href="{% url 'blog:director-list' %}">⬅ Cancelar</a>
 
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<h2>Listado de Películas</h2>
+
+<a href="{% url 'blog:pelicula-create' %}">➕ Agregar nueva película</a>
+
+<hr>
+
+<h3>🔍 Buscar Películas</h3>
+
+<form method="get">
+    {{ form.as_p }}
+    <button type="submit">Buscar</button>
+</form>
+
+<hr>
+
+{% if peliculas %}
+    <ul>
+        {% for pelicula in peliculas %}
+            <li>
+                <strong>{{ pelicula.titulo }}</strong>
+                ({{ pelicula.genero }})  
+                ⭐ {{ pelicula.puntuacion }}
+
+                <br>
+                <a href="{% url 'blog:pelicula-detail' pelicula.pk %}">Ver detalle</a> |
+                <a href="{% url 'blog:pelicula-update' pelicula.pk %}">Editar</a> |
+                <a href="{% url 'blog:pelicula-delete' pelicula.pk %}">Eliminar</a>
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay películas que coincidan con la búsqueda.</p>
+{% endif %}
+
+{% endblock %}

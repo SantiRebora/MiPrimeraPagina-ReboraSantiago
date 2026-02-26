@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<h2>{{ pelicula.titulo }}</h2>
+
+<p><strong>Director:</strong> {{ pelicula.director }}</p>
+<p><strong>Género:</strong> {{ pelicula.genero }}</p>
+<p><strong>Puntuación:</strong> ⭐ {{ pelicula.puntuacion }}</p>
+<p><strong>Descripción:</strong></p>
+<p>{{ pelicula.descripcion }}</p>
+
+<hr>
+
+<a href="{% url 'blog:pelicula-update' pelicula.pk %}">✏ Editar</a> |
+<a href="{% url 'blog:pelicula-delete' pelicula.pk %}">🗑 Eliminar</a> |
+<a href="{% url 'blog:pelicula-list' %}">⬅ Volver al listado</a>
+
+{% endblock %}

@@ -1,4 +1,5 @@
 from django import forms
+from django.core.validators import MinValueValidator, MaxValueValidator
 from .models import Director, Genero, Pelicula
 
 class DirectorForm(forms.ModelForm):

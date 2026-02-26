@@ -1,0 +1,26 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<h2>Listado de Directores</h2>
+
+<a href="{% url 'blog:director-create' %}">➕ Agregar nuevo director</a>
+
+<hr>
+
+{% if directores %}
+    <ul>
+        {% for director in directores %}
+            <li>
+                <strong>{{ director.nombre }}</strong>
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay directores cargados todavía.</p>
+{% endif %}
+
+<br>
+<a href="{% url 'blog:pelicula-list' %}">⬅ Volver a películas</a>
+
+{% endblock %}
