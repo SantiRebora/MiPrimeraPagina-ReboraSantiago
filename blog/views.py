@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.urls import reverse
+from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 from . import forms
 from .models import Director, Genero, Pelicula
@@ -81,13 +82,13 @@ class GeneroCreateView(CreateView):
     form_class = GeneroForm
 
     def form_valid(self, form):
-        response = super().form_valid(form)
+        self.object = form.save()  
+
         next_url = self.request.GET.get("next")
-
         if next_url:
-            return HttpResponseRedirect(f"{next_url}?genero={self.object.pk}")
+            return redirect(next_url)
 
-        return response
+        return redirect("pelicula_list")
 
 class DirectorListView(ListView):
     model = Director
@@ -98,14 +99,14 @@ from django.http import HttpResponseRedirect
 
 class DirectorCreateView(CreateView):
     model = Director
-    form_class = DirectorForm
+    fields = ["nombre", "apellido", "nacionalidad"]
+    template_name = "blog/director_form.html"
 
     def form_valid(self, form):
-        response = super().form_valid(form)
+        self.object = form.save()  
+
         next_url = self.request.GET.get("next")
-
         if next_url:
-            return HttpResponseRedirect(f"{next_url}?director={self.object.pk}")
+            return redirect(next_url)
 
-        return response
-
+        return redirect("pelicula_list")
