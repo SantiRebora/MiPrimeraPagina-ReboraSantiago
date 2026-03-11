@@ -3,7 +3,7 @@
 {% block content %}
 <h2>Listado de Géneros</h2>
 
-<a href="{% url 'blog:genero-create' %}">➕ Agregar nuevo género</a>
+<a href="{% url 'blog:genero_create' %}">➕ Agregar nuevo género</a>
 
 <hr>
 
@@ -21,6 +21,6 @@
 {% endif %}
 
 <br>
-<a href="{% url 'blog:pelicula-list' %}">⬅ Volver a películas</a>
+<a href="{% url 'blog:pelicula_list' %}">⬅ Volver a películas</a>
 
 {% endblock %}

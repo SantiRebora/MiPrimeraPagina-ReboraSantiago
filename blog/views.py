@@ -7,7 +7,8 @@ from django.http import HttpResponseRedirect
 from . import forms
 from .models import Director, Genero, Pelicula
 from .forms import DirectorForm, GeneroForm, PeliculaForm, BusquedaPeliculaForm
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class PeliculaListView(ListView):
     model = Pelicula
@@ -42,10 +43,10 @@ class PeliculaDetailView(DetailView):
     template_name = "blog/pelicula_detail.html"
     context_object_name = "pelicula"
 
-class PeliculaCreateView(CreateView):
+class PeliculaCreateView(LoginRequiredMixin, CreateView):
     model = Pelicula
     form_class = PeliculaForm
-    success_url = reverse_lazy("blog:pelicula-list")
+    success_url = reverse_lazy("blog:pelicula_list")
 
     def get_initial(self):
         initial = super().get_initial()
@@ -65,12 +66,12 @@ class PeliculaUpdateView(UpdateView):
     model = Pelicula
     form_class = PeliculaForm
     template_name = "blog/pelicula_form.html"
-    success_url = reverse_lazy("blog:pelicula-list")
+    success_url = reverse_lazy("blog:pelicula_list")
 
 class PeliculaDeleteView(DeleteView):
     model = Pelicula
     template_name = "blog/pelicula_confirm_delete.html"
-    success_url = reverse_lazy("blog:pelicula-list")
+    success_url = reverse_lazy("blog:pelicula_list")
 
 class GeneroListView(ListView):
     model = Genero
@@ -90,12 +91,21 @@ class GeneroCreateView(CreateView):
 
         return redirect("pelicula_list")
 
+class GeneroUpdateView(UpdateView):
+    model = Genero
+    fields = ["nombre"]
+    template_name = "blog/genero_form.html"
+    success_url = reverse_lazy("blog:genero_list")
+
+class GeneroDeleteView(DeleteView):
+    model = Genero
+    template_name = "blog/genero_confirm_delete.html"
+    success_url = reverse_lazy("blog:genero_list")
+
 class DirectorListView(ListView):
     model = Director
     template_name = "blog/director_list.html"
     context_object_name = "directores"
-
-from django.http import HttpResponseRedirect
 
 class DirectorCreateView(CreateView):
     model = Director
@@ -110,3 +120,20 @@ class DirectorCreateView(CreateView):
             return redirect(next_url)
 
         return redirect("pelicula_list")
+
+class DirectorUpdateView(UpdateView):
+    model = Director
+    fields = ["nombre", "apellido", "nacionalidad"]
+    template_name = "blog/director_form.html"
+    success_url = reverse_lazy("blog:director_list")
+
+class DirectorDeleteView(DeleteView):
+    model = Director
+    template_name = "blog/director_confirm_delete.html"
+    success_url = reverse_lazy("blog:director_list")
+
+class RegistroView(CreateView):
+    form_class = UserCreationForm
+    template_name = "blog/registro.html"
+    success_url = reverse_lazy("blog:login")
+

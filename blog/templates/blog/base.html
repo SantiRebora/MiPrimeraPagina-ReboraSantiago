@@ -74,7 +74,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'blog:pelicula-list' %}">
+        <a class="navbar-brand" href="{% url 'blog:pelicula_list' %}">
             🎬 Blog de Películas
         </a>
 
@@ -82,24 +82,54 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarContent">
-            <ul class="navbar-nav me-auto ms-4 mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'blog:pelicula-list' %}">Películas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'blog:director-list' %}">Directores</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'blog:genero-list' %}">Géneros</a>
-                </li>
-            </ul>
+<div class="collapse navbar-collapse" id="navbarContent">
+    <ul class="navbar-nav me-auto ms-4 mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog:pelicula_list' %}">Películas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog:director_list' %}">Directores</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog:genero_list' %}">Géneros</a>
+        </li>
+    </ul>
 
-            <a href="{% url 'blog:pelicula-create' %}" class="btn btn-primary fw-semibold">
-                + Agregar Película
+    <div class="d-flex align-items-center gap-3">
+
+        {% if user.is_authenticated %}
+
+            <span class="text-light small">
+                Hola {{ user.username }}
+            </span>
+
+            <form action="{% url 'blog:logout' %}" method="post" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-light btn-sm">
+            Logout
+            </button>
+            </form>
+
+        {% else %}
+
+            <a href="{% url 'blog:login' %}" class="btn btn-outline-light btn-sm">
+                Login
             </a>
-        </div>
+
+            <a href="{% url 'blog:registro' %}" class="btn btn-light btn-sm fw-semibold">
+                Registrarse
+            </a>
+
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'blog:pelicula_create' %}" class="btn btn-primary fw-semibold">
+            + Agregar Película
+            </a>
+        {% endif %}
+
     </div>
+</div>
 </nav>
 
 <main class="container py-5 flex-grow-1">

@@ -3,7 +3,7 @@
 {% block content %}
 <h2>Listado de Directores</h2>
 
-<a href="{% url 'blog:director-create' %}">➕ Agregar nuevo director</a>
+<a href="{% url 'blog:director_create' %}">➕ Agregar nuevo director</a>
 
 <hr>
 
@@ -22,6 +22,6 @@
 {% endif %}
 
 <br>
-<a href="{% url 'blog:pelicula-list' %}">⬅ Volver a películas</a>
+<a href="{% url 'blog:pelicula_list' %}">⬅ Volver a películas</a>
 
 {% endblock %}

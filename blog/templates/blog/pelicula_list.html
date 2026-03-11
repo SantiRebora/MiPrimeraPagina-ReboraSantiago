@@ -32,13 +32,13 @@
                     {{ pelicula.sinopsis|truncatewords:25 }}
                 </p>
 
-                <a href="{% url 'blog:pelicula-detail' pelicula.pk %}" class="btn btn-outline-primary btn-sm">
+                <a href="{% url 'blog:pelicula_detail' pelicula.pk %}" class="btn btn-outline-primary btn-sm">
                     Ver detalle
                 </a>
-                <a href="{% url 'blog:pelicula-update' pelicula.pk %}" class="btn btn-outline-secondary btn-sm">
+                <a href="{% url 'blog:pelicula_update' pelicula.pk %}" class="btn btn-outline-secondary btn-sm">
                     Editar
                 </a>
-                <a href="{% url 'blog:pelicula-delete' pelicula.pk %}" class="btn btn-outline-danger btn-sm">
+                <a href="{% url 'blog:pelicula_delete' pelicula.pk %}" class="btn btn-outline-danger btn-sm">
                     Eliminar
                 </a>
 

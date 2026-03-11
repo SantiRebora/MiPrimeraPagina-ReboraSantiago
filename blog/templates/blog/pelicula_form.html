@@ -28,7 +28,7 @@
             <div class="mb-3">
                 <label class="form-label">Género</label>
                 {{ form.genero }}
-               <a href="{% url 'blog:genero-create' %}?next={{ request.path }}" class="btn btn-outline-secondary btn-sm">
+               <a href="{% url 'blog:genero_create' %}?next={{ request.path }}" class="btn btn-outline-secondary btn-sm">
                 + Agregar género
                 </a>
             </div>
@@ -51,7 +51,7 @@
             <div class="mb-3">
                 <label class="form-label">Director</label>
                 {{ form.director }}
-                <a href="{% url 'blog:director-create' %}?next={{ request.path }}" class="btn btn-outline-secondary btn-sm">
+                <a href="{% url 'blog:director_create' %}?next={{ request.path }}" class="btn btn-outline-secondary btn-sm">
                 + Agregar director
                 </a>
             </div>
@@ -66,7 +66,7 @@
                     Guardar
                 </button>
 
-                <a href="{% url 'blog:pelicula-list' %}" class="btn btn-secondary">
+                <a href="{% url 'blog:pelicula_list' %}" class="btn btn-secondary">
                     Cancelar
                 </a>
             </div>
