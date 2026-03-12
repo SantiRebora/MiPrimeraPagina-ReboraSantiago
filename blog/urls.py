@@ -26,4 +26,5 @@ urlpatterns = [
     path("login/", LoginView.as_view(template_name="blog/login.html"), name="login"),
     path("logout/", LogoutView.as_view(next_page="blog:pelicula_list"), name="logout"),
     path("registro/", views.RegistroView.as_view(), name="registro"),
+    path("about/", views.AboutView.as_view(), name="about"),
 ]

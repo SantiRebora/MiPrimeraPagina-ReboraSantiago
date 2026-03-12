@@ -1,0 +1,56 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="card p-4 shadow-sm mx-auto" style="max-width: 700px;">
+
+<div class="text-center mb-4">
+    <img src="{% static 'blog/img/santi.jpg' %}"
+         class="rounded-circle shadow"
+         width="150"
+         height="150"
+         style="object-fit:cover;">
+         
+    <h4 class="text-center mt-3">Santiago Rebora</h4>
+</div>
+
+   <h2 class="mb-2 text-center">Sobre mí</h2>
+
+    <p>
+        Hola! Mi nombre es <strong>Santiago Rebora</strong>.
+    </p>
+
+    <p>
+        Tengo 23 años y este proyecto representa mi primer acercamiento real al mundo de la programación.
+        Antes de empezar el curso, la idea de crear una página web desde cero me parecía algo bastante imposible.
+    </p>
+
+        <h4 class="mt-5">Sobre el proyecto</h4>
+    <p>
+        Este blog de películas fue desarrollado como proyecto final del curso 
+    </p>
+
+        <h4 class="mt-5">Qué incluye la aplicación</h4>
+    <ul>
+        <li>Sistema de registro e inicio de sesión de usuarios</li>
+        <li>CRUD completo para películas, directores y géneros</li>
+        <li>Vistas basadas en clases</li>
+        <li>Buscador de películas</li>
+        <li>Diseño responsivo utilizando Bootstrap</li>
+    </ul>
+
+    <p class="mt-3">
+        Fue un proyecto muy desafiante pero también muy entretenido de desarrollar, y seguramente
+        seguiré aprendiendo más sobre python y el desarrollo web.
+    </p>
+
+    <p>
+        Gracias por pasar por la página!
+    </p>
+
+   <p class="text-muted fst-italic mt-4">
+    PD: Además de programar, soy bastante cinéfilo, así que este proyecto fue la excusa perfecta.
+    </p>
+</div>
+
+{% endblock %}

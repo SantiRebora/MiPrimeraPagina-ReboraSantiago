@@ -1,14 +1,41 @@
 # MiPrimeraPagina-ReboraSantiago
-Mi nombre es Santiago Rebora y mi proyecto es un Blog de Películas
+Aplicación web desarrollada con Python y Django como proyecto final del curso.
+El sistema funciona como un blog de películas, donde los usuarios pueden explorar información sobre películas, directores y géneros, así como administrar el contenido mediante operaciones CRUD.
 
-Las funciones principales del blog son crear, editar, eliminar y ver las distintas películas que fueron cargadas, el género y el director principalmente.
-Además de essos 3 modelos que fueron los que cree para la app. Las películas tienen objetos propios, como la duración, fecha de estreno, valoración que le dió la persona que la cargó y una sinopsis de la película. Mientras que los modelos género y director funcionan como herencia hacia las películas, considerando que un director puede hacer muchas películas y muchas películas pueden tener el mismo género.
+## La aplicación incluye las siguientes características:
+    CRUD completo de Películas
+    CRUD completo de Directores
+    CRUD completo de Géneros
+    Sistema de registro de usuarios
+    Login y Logout
+    Solo los usuarios autenticados pueden crear, editar o eliminar contenido
+    Buscador de películas
+    Sistema de puntuación de películas
+    Página About Me con información del autor
 
-En el blog se puede buscar películas por la valoración, por el título y el género.
-Además de que se puede crear una películam de 0 y ver una lista de los directores y géneros cargados
+## Instalación y ejecución del proyecto:
+1. Clonar el repositorio
+2. Entrar a la carpeta del proyecto
+3. Instalar las dependencias
+4. Ejecutar las migraciones
+5. Ejecutar el servidor
+6. Abrir en el navegador
 
 
-El blog está hecho con bootstrap y adaptado para verlo desde el celular, además de que le pedí ayuda a la IA en UI para darle color y un diseño mas moderno y amigable a la vista.
+## Orden recomendado para probar la aplicación
+1. Registrarse en la página de *Registro*.
+2. Iniciar sesión con el usuario creado.
+3. Crear nuevos *Directores* y *Géneros*.
+4. Crear nuevas *Películas* asociándolas a un director y un género.
+5. Explorar la lista de películas desde la página principal.
+6. Utilizar el *buscador* para filtrar películas.
+7. Editar o eliminar elementos usando las opciones disponibles (solo usuarios registrados).
+8. Visitar la página *About* para conocer más sobre el proyecto.
 
-El único detalle que voy a admitir que tiene en contra es que a la hora de crear una película, si el director o género que necesita la película no existe, podes cargarlo y volves a la creación pero te borra todo lo que ya habías completado de antes del resto de los campos
+## Algunas cosas para sumar en un futuro:
+- Subida de imágenes/posters de las películas
+- Sistema de comentarios de los usuarios
+- Perfil de usuario editable 
 
+
+Proyecto desarrollado por Santiago Rebora como entrega final del curso de Python y Django.
