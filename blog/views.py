@@ -90,7 +90,7 @@ class GeneroCreateView(LoginRequiredMixin, CreateView):
         if next_url:
             return redirect(next_url)
 
-        return redirect("pelicula_list")
+        return redirect("blog:pelicula_list")
 
 class GeneroUpdateView(LoginRequiredMixin, UpdateView):
     model = Genero
@@ -120,7 +120,7 @@ class DirectorCreateView(LoginRequiredMixin, CreateView):
         if next_url:
             return redirect(next_url)
 
-        return redirect("pelicula_list")
+        return redirect("blog:pelicula_list")
 
 class DirectorUpdateView(LoginRequiredMixin, UpdateView):
     model = Director

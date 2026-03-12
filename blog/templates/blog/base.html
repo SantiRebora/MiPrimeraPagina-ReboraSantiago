@@ -11,13 +11,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
+
         body {
-            background-color: #f4f6f9;
+            background: linear-gradient(180deg, #f8fafc, #eef2f7);
             font-family: 'Poppins', sans-serif;
         }
 
         .navbar-custom {
-            background-color: #1e293b;
+            background: linear-gradient(90deg, #1e293b, #334155);
         }
 
         .navbar-brand {
@@ -25,15 +26,25 @@
             letter-spacing: 0.5px;
         }
 
+        .nav-link {
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            opacity: 0.85;
+        }
+
         .card {
             border: none;
-            border-radius: 16px;
-            transition: 0.2s ease-in-out;
+            border-radius: 18px;
+            padding: 10px;
+            background-color: white;
+            transition: all 0.25s ease;
         }
 
         .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.10);
         }
 
         .badge-custom {
@@ -64,9 +75,11 @@
         }
 
         footer {
-            background-color: #1e293b;
+            background: #1e293b;
             color: #cbd5e1;
+            font-size: 0.9rem;
         }
+
     </style>
 </head>
 
@@ -74,6 +87,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm">
     <div class="container">
+
         <a class="navbar-brand" href="{% url 'blog:pelicula_list' %}">
             🎬 Blog de Películas
         </a>
@@ -83,19 +97,25 @@
         </button>
 
 <div class="collapse navbar-collapse" id="navbarContent">
+
     <ul class="navbar-nav me-auto ms-4 mb-2 mb-lg-0">
+
         <li class="nav-item">
             <a class="nav-link" href="{% url 'blog:pelicula_list' %}">Películas</a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link" href="{% url 'blog:director_list' %}">Directores</a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link" href="{% url 'blog:genero_list' %}">Géneros</a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link" href="{% url 'blog:about' %}">About Me</a>
         </li>
+
     </ul>
 
     <div class="d-flex align-items-center gap-3">
@@ -107,10 +127,10 @@
             </span>
 
             <form action="{% url 'blog:logout' %}" method="post" class="d-inline">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-outline-light btn-sm">
-            Logout
-            </button>
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-light btn-sm">
+                    Logout
+                </button>
             </form>
 
         {% else %}
@@ -127,22 +147,25 @@
 
         {% if user.is_authenticated %}
             <a href="{% url 'blog:pelicula_create' %}" class="btn btn-primary fw-semibold">
-            + Agregar Película
+                + Agregar Película
             </a>
         {% endif %}
 
     </div>
+
 </div>
 </nav>
 
-<main class="container py-5 flex-grow-1">
+<main class="container py-5 flex-grow-1" style="max-width: 900px;">
     {% block content %}
     {% endblock %}
 </main>
 
-<footer class="text-center py-3">
-    Proyecto Django — Blog de Películas <br>
-    <small>Hecho por Santiago Rebora</small>
+<footer class="text-center py-4 mt-auto">
+    <small>
+        🎬 Proyecto Django — Blog de Películas <br>
+        Hecho por <strong>Santiago Rebora</strong>
+    </small>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
